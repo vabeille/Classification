@@ -1,0 +1,2 @@
+class Carton < ApplicationRecord
+end
