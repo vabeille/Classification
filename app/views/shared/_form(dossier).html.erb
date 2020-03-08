@@ -1,0 +1,23 @@
+<div class="container">
+  <% if @dossier.errors.any? %>
+    <div class="errors-container">
+      <ul>
+        <% @dossier.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_for [@carton, @dossier] do |f| %>
+  <div class="nom">
+    <%= f.label :nom %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="client">
+    <%= f.label :client %>
+    <%= f.text_field :client %>
+  </div>
+
+    <%= f.submit %>
+</div>
+<% end %>

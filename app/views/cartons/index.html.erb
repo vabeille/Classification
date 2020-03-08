@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Bienvenue !</h1>
+
+  <!-- Chercher un carton -->
+  <p>Cherchez un carton existant :</p>
+  <%= form_tag cartons_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Chercher un carton..."%>
+
+    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+    <% end %>
+
+<!-- Lien vers création d'un carton -->
+<br>
+<p>Ou référencez un nouveau carton :</p>
+
+    <%= link_to "Nouveau", "cartons/new" %>
+<!-- Index qui montre les cartons OU cartons recherchés -->
+<!-- TODO2 : Ne faire un index qui ne fait que les cartons recherchés -->
+
+
+
+<br>
+<br>
+<% if @cartons.length > 0 %>
+<div class="media">
+  <div class="media-body">
+    <table class="table table-hover">
+      <thead>
+        <th>Matière</th>
+        <th>Année</th>
+        <th>Numéro Chrono</th>
+        <th></th>
+      </thead>
+      <% @cartons.each do |carton| %>
+        <tr>
+          <td><%= carton.matiere %></td>
+          <td><%= carton.annee %></td>
+          <td><%= carton.chrono %></td>
+          <td><%= link_to "Gérer ce carton", carton_path(carton) %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+  <% else %>
+    <em><%= "Aucun résultat." %></em>
+  <% end %>
+</div>

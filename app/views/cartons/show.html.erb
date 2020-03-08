@@ -1,0 +1,59 @@
+<div class="container">
+
+<h1>Vous êtes dans votre carton</h1>
+<p id = "bla">Référencement sous le nom de :</p>
+
+<!-- TODO 1 : créer le référencement automatique du carton -->
+
+<br>
+<br>
+<% if @carton.dossiers.length > 0 %>
+<div class="media">
+  <div class="media-body">
+    <table class="table table-hover">
+      <thead>
+        <th>Nom du dossier</th>
+        <th>Client</th>
+        <th>Localisation</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <% @carton.dossiers.each do |dossier| %>
+        <tr>
+          <td><%= dossier.name %></td>
+          <td><%= dossier.client %></td>
+          <td><%= link_to "Mettre à jour", edit_carton_dossier_path(carton_id: @carton.id, id: dossier.id) %></td>
+          <td><%= link_to "Supprimer", [@carton, dossier], method: :delete, confirm: "Êtes-vous sûr ?" %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+  <% else %>
+    <em><%= "Aucun dossier n'est ajouté pour ce carton." %></em>
+  <% end %>
+
+
+
+
+<%= link_to 'Ajouter un dossier', new_carton_dossier_path(@carton) %>
+<br><br>
+<%= link_to "Mettre à jour le carton", edit_carton_path(@carton) %>
+<br>
+<%= link_to "Supprimer le carton", @carton, method: :delete, data: { confirm: "Voulez-vous vraiment supprimer ce carton ? NB - tous les dossiers qu'il contient seront supprimés" } %>
+<br><br>
+<%= link_to "Retour à l'accueil", cartons_path %>
+<br>
+
+</div>
+<!-- Javascript - test -->
+<!-- <script>
+const list = dossier.querySelector("#bla");
+
+if (@cartons.matiere == "Comptabilité") {
+  console.log("You can vote");
+} else {
+  console.log("You can't vote");
+}
+
+</script> -->
