@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :cartons do
     resources :dossiers, only: [:new, :create, :edit, :update, :destroy]
   end
+  resources :users
+    post "chrono", to: "cartons#chrono", as: :chrono
 end

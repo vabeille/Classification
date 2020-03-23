@@ -1,9 +1,15 @@
 <div class="container">
 
-<h1>Vous êtes dans votre carton</h1>
-<p id = "bla">Référencement sous le nom de :</p>
+<!-- Données du Carton : référencement + sensible y/n -->
 
-<!-- TODO 1 : créer le référencement automatique du carton -->
+<h1>Vous êtes dans votre carton</h1><h1 id="referencement"></h1>
+<br>
+<br>
+<% if @carton.sensible == true %>
+  <em><%='Attention : ce dossier est marqué comme sensible'%></em>
+<% end%>
+
+<!-- Affichage d'éventuels dossiers -->
 
 <br>
 <br>
@@ -14,7 +20,6 @@
       <thead>
         <th>Nom du dossier</th>
         <th>Client</th>
-        <th>Localisation</th>
         <th></th>
         <th></th>
       </thead>
@@ -34,7 +39,7 @@
   <% end %>
 
 
-
+<!-- Boutons ajout/maj/suppression/retour -->
 
 <%= link_to 'Ajouter un dossier', new_carton_dossier_path(@carton) %>
 <br><br>
@@ -44,16 +49,27 @@
 <br><br>
 <%= link_to "Retour à l'accueil", cartons_path %>
 <br>
+<br><br><br>
+
+
+<!-- Javascript pour référencement -->
+
+<script>
+var newchronojs =""
+  if ("<%= @carton.id %> "< 10) {
+  newnew = newchronojs.concat("00", "<%= @carton.id %>") ;
+
+} else if ("<%= @carton.id %>" >= 10  && "<%= @carton.id %>" < 100) {
+  newnew = newchronojs.concat("0", "<%= @carton.id %>") ;
+} else if ("<%= @carton.id %>" >= 100 ) {
+  newnew = newchronojs = "<%= @carton.id %>" ;
+}
+  var str = "<%= @carton.matiere %>";
+  var res = str.charAt(0);
+  var strr = "<%= @carton.annee %>";
+  var ress = strr.slice(2)
+  document.getElementById("referencement").innerHTML = res + ress + newnew;
+
+</script>
 
 </div>
-<!-- Javascript - test -->
-<!-- <script>
-const list = dossier.querySelector("#bla");
-
-if (@cartons.matiere == "Comptabilité") {
-  console.log("You can vote");
-} else {
-  console.log("You can't vote");
-}
-
-</script> -->

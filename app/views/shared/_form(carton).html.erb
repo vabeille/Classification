@@ -1,22 +1,29 @@
 <div class="container">
+
   <%= form_for(@carton) do |f| %>
-  <div class="matiere">
-    <%= f.label :matiere %>
-    <%= f.select :matiere, ['Comptabilité', 'Social', 'Juridique', 'Personnels', 'Administratif'],prompt: 'Sélectionnez une matière'%>
-  </div>
   <div class="annee">
     <%= f.label :année %>
-    <%= f.select :annee, (2000)..(Time.zone.now.year - 3),prompt: 'Sélectionnez une année' %>
+    <%= f.select :annee, (2000)..(Time.zone.now.year - 3), { include_blank: 'Sélectionnez une année' }, {  id: :carton_annee } %>
+  </div>
+  <div class="matiere">
+    <%= f.label :matiere %>
+    <%= f.select :matiere, ['Comptabilité', 'Social', 'Juridique', 'Personnels', 'Administratif'], { include_blank: 'Sélectionnez une matière' }, {  id: :carton_matiere } %>
   </div>
   <div class="localisation">
       <%= f.label :localisation %>
-      <%= f.select :localisation,['SAINT-TROPEZ - étage', 'SAINT-TROPEZ - cave', 'SAINT-TROPEZ - garage', 'COGOLIN - RDC', 'COGOLIN - garage', 'MARSEILLE ACA - cave grande pièce', 'MARSEILLE ACA - cave pièce entrée', 'MARSEILLE ACA - cave pièce entrée', 'MARSEILLE ACA - cave pièce du fond', 'MARSEILLE ACA - cave passage du fond', 'MARSEILLE ACA - cave pièce chaudière', 'MARSEILLE ACA - petite pièce', 'PARIS - sous-sol', 'MARSEILLE SGCAM - pièce rangement'],prompt: 'Sélectionnez une localisation' %>
+      <%= f.select :localisation,['SAINT-TROPEZ - étage', 'SAINT-TROPEZ - cave', 'SAINT-TROPEZ - garage', 'COGOLIN - RDC', 'COGOLIN - garage', 'MARSEILLE ACA - cave grande pièce', 'MARSEILLE ACA - cave pièce entrée', 'MARSEILLE ACA - cave pièce entrée', 'MARSEILLE ACA - cave pièce du fond', 'MARSEILLE ACA - cave passage du fond', 'MARSEILLE ACA - cave pièce chaudière', 'MARSEILLE ACA - petite pièce', 'PARIS - sous-sol', 'MARSEILLE SGCAM - pièce rangement'],prompt: 'Sélectionnez une localisation'%>
     </div>
-  <div class="chrono">
-    <%= f.label :numéro %>
-    <%= f.text_field :chrono %>
+  <div class="sensible">
+    <%= f.label :sensible%>
+    <%= f.check_box :sensible %>
   </div>
     <%= f.submit %>
 </div>
 <% end %>
+
+
+
+<!-- Javascript pour le référencement -->
+<!-- Le mettre sur un fichier séparé et l'appeler pour le show-->
+
 

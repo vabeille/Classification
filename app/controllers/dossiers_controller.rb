@@ -48,6 +48,6 @@ def new
   end
 
   def dossier_params
-    params.require(:dossier).permit(:name, :client, :year, :localisation, :subject, :cabinet)
+    params.require(:dossier).permit(:name, :client)
   end
 end
