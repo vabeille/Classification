@@ -1,21 +1,17 @@
 <div class="container">
-  <h1>Bienvenue !</h1>
+  <h1 id="welcome-rechercher">Rechercher</h1>
+  <br><br>
 
 <!-- Chercher un carton -->
-  <p>Cherchez un carton ou un dossier existant :</p>
   <%= form_tag cartons_path, method: :get do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
     placeholder: "ex : Assemblée Générale"%>
-    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+    <button name="button" type="submit" class="btn-search">
+      <i class="fas fa-search"></i> Search
+    </button>
     <% end %>
-
-<!-- Lien vers création d'un carton -->
-<br>
-<p>Ou référencez un nouveau carton :</p>
-<%= link_to "Créer un nouveau carton", "cartons/new" %>
-
 
 <!-- Index qui montre les cartons OU cartons recherchés -->
   <!-- TODO : Ne faire un index qui ne fait que les cartons recherchés -->
@@ -48,6 +44,12 @@
     <em><%= "Aucun résultat." %></em>
   <% end %>
 </div>
+
+
+<!-- Lien vers création d'un carton -->
+<br>
+<p>Ou référencez un nouveau carton :</p>
+<%= link_to "Créer un nouveau carton", "cartons/new" %>
 
 
 
