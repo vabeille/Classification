@@ -1,55 +1,66 @@
 <div class="container">
-  <h1 id="welcome-rechercher">Rechercher</h1>
+  <h1 class="titre-index">Rechercher</h1>
   <br><br>
 
 <!-- Chercher un carton -->
+<div class="new-class">
   <%= form_tag cartons_path, method: :get do %>
   <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
+  params[:query],
+  class: "form-control",
     placeholder: "ex : Assemblée Générale"%>
     <button name="button" type="submit" class="btn-search">
       <i class="fas fa-search"></i> Search
     </button>
-    <% end %>
+  <% end %>
+</div>
 
 <!-- Index qui montre les cartons OU cartons recherchés -->
   <!-- TODO : Ne faire un index qui ne fait que les cartons recherchés -->
 
 <br>
 <br>
-<% if @cartons.length > 0 %>
-<div class="media">
-  <div class="media-body">
-    <table class="table table-hover">
-      <thead>
-        <th>Matière</th>
-        <th>Année</th>
-        <th>Numéro Chrono</th>
-        <th>Localisation</th>
-        <th></th>
-      </thead>
-      <% @cartons.each do |carton| %>
-        <tr>
-          <td><%= carton.matiere %></td>
-          <td><%= carton.annee %></td>
-          <td><%= carton.localisation %></td>
-          <td><%= link_to "Gérer ce carton", carton_path(carton) %></td>
-        </tr>
-      <% end %>
-      </table>
+<% if params[:query] %>
+  <% if @cartons.length > 0 %>
+  <div class="media">
+    <div class="media-body">
+      <table class="table table-hover">
+        <em><%= "#{@cartons.length} résultats pour la recherche #{params[:query]} :"%></em><br><br>
+        <thead>
+          <th>Matière</th>
+          <th>Année</th>
+          <th>Localisation</th>
+          <th></th>
+        </thead>
+        <% @cartons.each do |carton| %>
+          <tr>
+            <td><%= carton.matiere %></td>
+            <td><%= carton.annee %></td>
+            <td><%= carton.localisation %></td>
+            <td><%= link_to "Gérer ce carton", carton_path(carton) %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
     </div>
-  </div>
-  <% elsif @cartons.length == 0 %>
-    <em><%= "Aucun résultat." %></em>
+    <% else %>
+      <em><%= "Aucun résultat trouvé pour #{params[:query]}." %></em>
+    <% end %>
   <% end %>
-</div>
+
 
 
 <!-- Lien vers création d'un carton -->
-<br>
-<p>Ou référencez un nouveau carton :</p>
-<%= link_to "Créer un nouveau carton", "cartons/new" %>
+<br><br><br><br>
+<br><br><br><br>
 
 
+
+
+
+<h1 class="titre-index">Référencer un nouveau carton</h1>
+<%= link_to "Nouveau carton", "cartons/new" %>
+
+
+</div>
 

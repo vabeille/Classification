@@ -1,0 +1,32 @@
+#new_carton.new_carton {
+  box-sizing: border-box;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  padding: 32px !important;
+  padding-bottom: 60px !important;
+  width: 441px !important;
+  box-shadow: 0 16px 20px rgba(0,0,0,0.12) !important;
+
+}
+
+.annee {
+  padding-bottom: 10px;
+
+}
+
+.matiere {
+  padding-bottom: 10px;
+}
+
+.localisation {
+  padding-bottom: 10px;
+}
+
+.sensible {
+  padding-bottom: 10px;
+}
+
+#coordonnees-carton {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-align: center;
+}

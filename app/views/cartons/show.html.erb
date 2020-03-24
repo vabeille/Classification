@@ -5,13 +5,15 @@
 <h1>Vous êtes dans votre carton</h1><h1 id="referencement"></h1>
 <br>
 <br>
+<div id="sensible">
 <% if @carton.sensible == true %>
-  <em><%='Attention : ce dossier est marqué comme sensible'%></em>
+  <%= image_tag "attention.png", width: '50px' %>
+  <em><%='Attention : ce dossier est classé comme sensible.'%></em>
 <% end%>
+</div>
 
 <!-- Affichage d'éventuels dossiers -->
 
-<br>
 <br>
 <% if @carton.dossiers.length > 0 %>
 <div class="media">
