@@ -12,3 +12,27 @@
   width: 60px;
 
 }
+
+
+/* Page content */
+.navbar-lewagon .content {
+  padding: 16px;
+
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.navbar-lewagon .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.navbar-lewagon .sticky + .content {
+  padding-top: 60px;
+}
+
+#utilisateur {
+  margin-right: 10px;
+  margin-left: 10px;
+}

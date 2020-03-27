@@ -9,13 +9,19 @@
     </div>
   <% end %>
   <%= form_for [@carton, @dossier] do |f| %>
-  <div class="nom">
-    <%= f.label :nom %>
-    <%= f.text_field :name %>
-  </div>
+<h3 class="coordonnees">Ajouter un dossier</h3><br>
   <div class="client">
     <%= f.label :client %>
     <%= f.text_field :client %>
+  </div>
+    <div class="nom">
+    <%= f.label :sujet_du_dossier %>
+    <!-- <#%= f.select :sujet,['blabla', "bloblo"],prompt: 'Sélectionnez un sujet'%> -->
+    <%= f.text_field :sujet %>
+  </div>
+    <div class="sensible">
+    <%= f.label :sensible? %>
+    <%= f.check_box :sensible %>
   </div>
 
     <%= f.submit %>

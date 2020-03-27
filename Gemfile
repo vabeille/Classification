@@ -10,6 +10,8 @@ gem 'puma'
 gem 'rails', '5.2.4.1'
 gem 'redis'
 gem 'pg_search'
+gem 'roo', '~> 2.8', '>= 2.8.3'
+gem 'pundit'
 
 
 
@@ -34,4 +36,5 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
+
 end

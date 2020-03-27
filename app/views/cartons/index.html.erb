@@ -1,14 +1,21 @@
 <div class="container">
-  <h1 class="titre-index">Rechercher</h1>
-  <br><br>
 
+
+<!-- Lien vers création d'un carton -->
+<br><br><br><br><br><br>
+<h1 class="titre-index">Créer un nouveau carton</h1>
+<% if policy(Carton).create? %>
+<%= link_to "Nouveau carton", "cartons/new" %>
+<% end %>
+<br><br><br><br><br><br>
 <!-- Chercher un carton -->
-<div class="new-class">
+<h1 class="titre-index">Rechercher dans les archives</h1><br>
+<div class="search-block">
   <%= form_tag cartons_path, method: :get do %>
   <%= text_field_tag :query,
   params[:query],
   class: "form-control",
-    placeholder: "ex : Assemblée Générale"%>
+    placeholder: "Effectuez une recherche d'un carton ou d'un dossier"%>
     <button name="button" type="submit" class="btn-search">
       <i class="fas fa-search"></i> Search
     </button>
@@ -20,16 +27,16 @@
 
 <br>
 <br>
-<% if params[:query] %>
+<!-- <#% if params[:query] %> -->
   <% if @cartons.length > 0 %>
   <div class="media">
     <div class="media-body">
       <table class="table table-hover">
         <em><%= "#{@cartons.length} résultats pour la recherche #{params[:query]} :"%></em><br><br>
         <thead>
-          <th>Matière</th>
-          <th>Année</th>
-          <th>Localisation</th>
+          <th><%= sortable "matiere", "Matière" %></th>
+          <th><%= sortable "annee", "Année" %></th>
+          <th><%= sortable "localisation", "Localisation" %></th>
           <th></th>
         </thead>
         <% @cartons.each do |carton| %>
@@ -37,30 +44,21 @@
             <td><%= carton.matiere %></td>
             <td><%= carton.annee %></td>
             <td><%= carton.localisation %></td>
-            <td><%= link_to "Gérer ce carton", carton_path(carton) %></td>
+            <td><% if policy(Carton).show? %>
+                  <%= link_to "Gérer ce carton", carton_path(carton) %>
+                  <% end %></td>
           </tr>
         <% end %>
         </table>
       </div>
     </div>
     <% else %>
-      <em><%= "Aucun résultat trouvé pour #{params[:query]}." %></em>
+      <em><%= "Aucun résultat trouvé pour la recherche : #{params[:query]}." %></em>
     <% end %>
-  <% end %>
+<!-- <#% end %> -->
 
 
 
-<!-- Lien vers création d'un carton -->
-<br><br><br><br>
-<br><br><br><br>
-
-
-
-
-
-<h1 class="titre-index">Référencer un nouveau carton</h1>
-<%= link_to "Nouveau carton", "cartons/new" %>
 
 
 </div>
-

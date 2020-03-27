@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_095505) do
+ActiveRecord::Schema.define(version: 2020_03_27_073622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "cartons", force: :cascade do |t|
     t.string "matiere"
@@ -23,14 +24,16 @@ ActiveRecord::Schema.define(version: 2020_03_22_095505) do
     t.datetime "updated_at", null: false
     t.boolean "sensible"
     t.string "chrono"
+    t.integer "user_id"
   end
 
   create_table "dossiers", force: :cascade do |t|
-    t.string "name"
     t.string "client"
     t.bigint "carton_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sujet"
+    t.boolean "sensible"
     t.index ["carton_id"], name: "index_dossiers_on_carton_id"
   end
 
@@ -42,6 +45,10 @@ ActiveRecord::Schema.define(version: 2020_03_22_095505) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
+    t.string "prenom", default: "", null: false
+    t.string "nom_de_famille", default: "", null: false
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

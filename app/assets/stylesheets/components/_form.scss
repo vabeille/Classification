@@ -6,27 +6,70 @@
   padding-bottom: 60px !important;
   width: 441px !important;
   box-shadow: 0 16px 20px rgba(0,0,0,0.12) !important;
+  display: inline-block;
 
 }
 
 .annee {
   padding-bottom: 10px;
+  text-align: left;
 
 }
 
 .matiere {
   padding-bottom: 10px;
+  text-align: left;
 }
 
 .localisation {
   padding-bottom: 10px;
+  text-align: left;
 }
 
 .sensible {
   padding-bottom: 10px;
+  text-align: left;
 }
 
 #coordonnees-carton {
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
   text-align: center;
+  padding: 25px;;
+  border-bottom :1px solid #4FC2E3;
+}
+
+.edit_carton {
+  box-sizing: border-box;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  padding: 32px !important;
+  padding-bottom: 60px !important;
+  width: 441px !important;
+  box-shadow: 0 16px 20px rgba(0,0,0,0.12) !important;
+  display: inline-block;
+
+}
+
+
+.container .form {
+  text-align: center;
+}
+
+.new_dossier {
+  box-sizing: border-box;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  padding: 32px !important;
+  padding-bottom: 60px !important;
+  width: 441px !important;
+  box-shadow: 0 16px 20px rgba(0,0,0,0.12) !important;
+  display: inline-block;
+
+}
+
+.coordonnees {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-align: center;
+  padding: 25px;;
+  border-bottom :1px solid #4FC2E3;
 }

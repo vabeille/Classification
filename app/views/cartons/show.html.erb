@@ -2,56 +2,81 @@
 
 <!-- Données du Carton : référencement + sensible y/n -->
 
-<h1>Vous êtes dans votre carton</h1><h1 id="referencement"></h1>
+<h1>Bienvenue dans le carton</h1><h1 id="referencement"></h1>
+<p>Ce carton a été créé par : <%= @carton.user.email %></p>
 <br>
+
+<br><br>
+<p>Il contient actuellement <%= "#{@carton.dossiers.length}"%> dossier(s). <%= link_to 'Ajouter un dossier', new_carton_dossier_path(@carton) %></p>
 <br>
-<div id="sensible">
-<% if @carton.sensible == true %>
-  <%= image_tag "attention.png", width: '50px' %>
-  <em><%='Attention : ce dossier est classé comme sensible.'%></em>
-<% end%>
-</div>
+
 
 <!-- Affichage d'éventuels dossiers -->
 
-<br>
 <% if @carton.dossiers.length > 0 %>
 <div class="media">
   <div class="media-body">
     <table class="table table-hover">
       <thead>
-        <th>Nom du dossier</th>
+        <th></th>
+        <th>Sujet du dossier</th>
         <th>Client</th>
         <th></th>
         <th></th>
       </thead>
       <% @carton.dossiers.each do |dossier| %>
         <tr>
-          <td><%= dossier.name %></td>
+          <td><% if dossier.sensible == true %>
+            <%= image_tag "attention.png", width: '27px' %>
+            <% end%></td>
+          <td><%= dossier.sujet %></td>
           <td><%= dossier.client %></td>
-          <td><%= link_to "Mettre à jour", edit_carton_dossier_path(carton_id: @carton.id, id: dossier.id) %></td>
-          <td><%= link_to "Supprimer", [@carton, dossier], method: :delete, confirm: "Êtes-vous sûr ?" %></td>
+          <td><% if policy(@carton).edit? %>
+            <%= link_to "Mettre à jour", edit_carton_dossier_path(carton_id: @carton.id, id: dossier.id) %>
+              <% end %></td>
+          <td><% if policy(@carton).destroy? %>
+            <%= link_to "Supprimer", [@carton, dossier], method: :delete, data: { confirm: "Êtes-vous sûr ?" } %>
+            <% end %></td>
+
+
         </tr>
       <% end %>
       </table>
     </div>
   </div>
-  <% else %>
-    <em><%= "Aucun dossier n'est ajouté pour ce carton." %></em>
   <% end %>
 
+<!-- TODO - Expérimentation : carton sensible -->
 
-<!-- Boutons ajout/maj/suppression/retour -->
+<!-- <div id="sensible"> -->
+<!--   <% %>
+<#% if @dossiers.sensible = true > 0  %>
+  <#%= image_tag "attention.png", width: '27px' %>
+  <em><#%='Attention : ce carton connaît au moins un dossier sensible.'%></em>
+<#% end%>
+</div>  -->
 
-<%= link_to 'Ajouter un dossier', new_carton_dossier_path(@carton) %>
+
+
+
+
+<!-- Liens ajout/maj/suppression/retour -->
+
+
 <br><br>
-<%= link_to "Mettre à jour le carton", edit_carton_path(@carton) %>
+<% if policy(@carton).edit? %>
+  <%= link_to "Mettre à jour le carton", edit_carton_path(@carton) %>
+<% end %>
 <br>
-<%= link_to "Supprimer le carton", @carton, method: :delete, data: { confirm: "Voulez-vous vraiment supprimer ce carton ? NB - tous les dossiers qu'il contient seront supprimés" } %>
-<br><br>
-<%= link_to "Retour à l'accueil", cartons_path %>
+<% if policy(@carton).destroy? %>
+<%= link_to "Supprimer le carton", @carton, method: :delete, data: { confirm: "Voulez-vous vraiment supprimer ce carton ? Tous les dossiers qu'il contient seront supprimés" } %>
+<% end %>
+
+<!-- Bouton vers l'accueil (désactivé) -->
+<!-- <br><br>
+<#%= link_to "Retour à l'accueil", cartons_path %>
 <br>
-<br><br><br>
+<br><br><br> -->
 
 
 <!-- Javascript pour référencement -->
@@ -70,7 +95,7 @@ var newchronojs =""
   var res = str.charAt(0);
   var strr = "<%= @carton.annee %>";
   var ress = strr.slice(2)
-  document.getElementById("referencement").innerHTML = res + ress + newnew;
+  document.getElementById("referencement").innerHTML = res + "-" + ress + "-" + newnew;
 
 </script>
 
